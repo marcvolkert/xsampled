@@ -1,7 +1,8 @@
 package org.xsampled.samplers.primitive
 
-import org.junit.jupiter.api.Assertions.assertDoesNotThrow
-import org.junit.jupiter.api.Assertions.assertTrue
+import net.jqwik.api.Arbitraries
+import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.RepeatedTest
 import java.net.URI
@@ -75,5 +76,106 @@ abstract class PrimitiveSamplerTest {
         assertTrue(duration.matches(Regex("-?P((([0-9]+Y([0-9]+M)?([0-9]+D)?|([0-9]+M)([0-9]+D)?|([0-9]+D))(T(([0-9]+H)([0-9]+M)?([0-9]+(\\.[0-9]+)?S)?|([0-9]+M)([0-9]+(\\.[0-9]+)?S)?|([0-9]+(\\.[0-9]+)?S)))?)|(T(([0-9]+H)([0-9]+M)?([0-9]+(\\.[0-9]+)?S)?|([0-9]+M)([0-9]+(\\.[0-9]+)?S)?|([0-9]+(\\.[0-9]+)?S))))")))
     }
 
+    @RepeatedTest(100)
+    @DisplayName("float")
+    fun testGenerateFloat() {
+        val float = sampler.generateFloat()
+        println("actual: $float")
+        assertTrue(float.matches(Regex("(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)([Ee](\\+|-)?[0-9]+)?|(\\+|-)?INF|NaN")))
+    }
+
+    @Disabled
+    // TODO: Write meaningful test
+    @RepeatedTest(100)
+    @DisplayName("gDay")
+    fun testGenerateGDay() {
+        val gDay = sampler.generateGDay()
+        println("actual: $gDay")
+        assertTrue(gDay.matches(Regex("---(0[1-9]|[12][0-9]|3[01])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?")))
+    }
+
+    @Disabled
+    // TODO: Write meaningful test
+    @RepeatedTest(100)
+    @DisplayName("gMonth")
+    fun testGenerateGMonth() {
+        val gMonth = sampler.generateGMonth()
+        println("actual: $gMonth")
+        assertTrue(gMonth.matches(Regex("--(0[1-9]|1[0-2])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?")))
+    }
+
+    @Disabled
+    // TODO: Write meaningful test
+    @RepeatedTest(100)
+    @DisplayName("gMonthDay")
+    fun testGenerateGMonthDay() {
+        val gMonthDay = sampler.generateGMonthDay()
+        println("actual: $gMonthDay")
+        assertTrue(gMonthDay.matches(Regex("-?([1-9][0-9]{3,}|0[0-9]{3})(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?")))
+    }
+
+    @Disabled
+    // TODO: Write meaningful test
+    @RepeatedTest(100)
+    @DisplayName("gYear")
+    fun testGenerateGYear() {
+        val gYear = sampler.generateGYear()
+        println("actual: $gYear")
+        assertTrue(gYear.matches(Regex("-?([1-9][0-9]{3,}|0[0-9]{3})(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?")))
+    }
+
+    @Disabled
+    // TODO: Write meaningful test
+    @RepeatedTest(100)
+    @DisplayName("gYearMonth")
+    fun testGenerateGYearMonth() {
+        val gYearMonth = sampler.generateGYearMonth()
+        println("actual: $gYearMonth")
+        assertTrue(gYearMonth.matches(Regex("-?([1-9][0-9]{3,}|0[0-9]{3})-(0[1-9]|1[0-2])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?")))
+    }
+
+    @RepeatedTest(100)
+    @DisplayName("hexBinary")
+    fun testGenerateHexBinary() {
+        val hexBinary = sampler.generateHexBinary()
+        println("actual: $hexBinary")
+        assertTrue(hexBinary.matches(Regex("([0-9a-fA-F]{2})*")))
+    }
+
+    @Disabled
+    // TODO: Write meaningful test
+    @RepeatedTest(100)
+    @DisplayName("NOTATION")
+    fun testGenerateNOTATION() {
+        val NOTATION = sampler.generateNOTATION()
+        println("actual: $NOTATION")
+        assertTrue(false)
+    }
+
+    @Disabled
+    // TODO: Write meaningful test
+    @RepeatedTest(100)
+    @DisplayName("QName")
+    fun testGenerateQName() {
+        val qName = sampler.generateQName()
+        println("actual: $qName")
+        assertTrue(false)
+    }
+
+    @RepeatedTest(100)
+    @DisplayName("string")
+    fun testGenerateString() {
+        val string = sampler.generateString()
+        println("actual: $string")
+        assertTrue(string.matches(Regex(".*")))
+    }
+
+    @RepeatedTest(100)
+    @DisplayName("time")
+    fun testGenerateTime() {
+        val time = sampler.generateTime()
+        println("actual: $time")
+        assertTrue(time.matches(Regex("(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?")))
+    }
 
 }

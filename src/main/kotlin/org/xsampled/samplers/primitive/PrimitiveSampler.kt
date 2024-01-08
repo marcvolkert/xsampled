@@ -166,81 +166,95 @@ abstract class PrimitiveSampler() {
         return duration.toString()
     }
 
-    // TODO: write test
-    // TODO: implement
-    // TODO: write documentation
     fun generateFloat(): String {
-        return ""
+        /**
+         * Generates a random Float as String
+         * @return a random Float
+         */
+        return rand.nextFloat().toString()
     }
 
-    // TODO: write test
-    // TODO: implement
-    // TODO: write documentation
     fun generateGDay(): String {
-        return ""
+        /**
+         * This method is not implemented yet
+         * @throws NotImplementedError
+         */
+        throw NotImplementedError()
     }
 
-    // TODO: write test
-    // TODO: implement
-    // TODO: write documentation
     fun generateGMonth(): String {
-        return ""
+        /**
+         * This method is not implemented yet
+         * @throws NotImplementedError
+         */
+        throw NotImplementedError()
     }
 
-    // TODO: write test
-    // TODO: implement
-    // TODO: write documentation
     fun generateGMonthDay(): String {
-        return ""
+        /**
+         * This method is not implemented yet
+         * @throws NotImplementedError
+         */
+        throw NotImplementedError()
     }
 
-    // TODO: write test
-    // TODO: implement
-    // TODO: write documentation
     fun generateGYear(): String {
-        return ""
+        /**
+         * This method is not implemented yet
+         * @throws NotImplementedError
+         */
+        throw NotImplementedError()
     }
 
-    // TODO: write test
-    // TODO: implement
-    // TODO: write documentation
     fun generateGYearMonth(): String {
-        return ""
+        /**
+         * This method is not implemented yet
+         * @throws NotImplementedError
+         */
+        throw NotImplementedError()
     }
 
-    // TODO: write test
-    // TODO: implement
-    // TODO: write documentation
     fun generateHexBinary(): String {
-        return ""
+        /**
+         * Generates a random HexBinary as String
+         * @return a random HexBinary
+         */
+        val bytes = ByteArray(rand.nextInt(10, 100))
+        rand.nextBytes(bytes)
+        return bytes.joinToString("") { "%02x".format(it) }
     }
 
-    // TODO: write test
-    // TODO: implement
-    // TODO: write documentation
     fun generateNOTATION(): String {
-        return ""
+        /**
+         * This method is not implemented yet
+         * @throws NotImplementedError
+         */
+        throw NotImplementedError()
     }
 
-    // TODO: write test
-    // TODO: implement
-    // TODO: write documentation
     fun generateQName(): String {
-        return ""
+        /**
+         * This method is not implemented yet
+         * @throws NotImplementedError
+         */
+        throw NotImplementedError()
     }
 
-    // TODO: write test
-    // TODO: implement
-    // TODO: write documentation
     fun generateString(): String {
-        return ""
+        /**
+         * Generates a random String
+         * @return a random String
+         */
+        return RandomStringUtils.randomAlphanumeric(rand.nextInt(10, 100))
     }
 
-    // TODO: write test
-    // TODO: implement
-    // TODO: write documentation
     fun generateTime(): String {
-        return ""
+        /**
+         * Generates a random Time as String
+         * @return a random Time
+         */
+        val zdt = getRandomZdt()
+        return zdt.format(DateTimeFormatter.ISO_LOCAL_TIME)
     }
 
 }
