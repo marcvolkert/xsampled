@@ -8,7 +8,7 @@ import java.util.*
 open class Randomization {
 
     internal companion object {
-        val rand: Random = java.util.Random();
+        val rand: Random = Random()
         fun getRandomZdt(): ZonedDateTime {
             /**
              * Generates a random ZonedDateTime between 30 years ago and 90 years in the future
@@ -21,12 +21,12 @@ open class Randomization {
             return ZonedDateTime.ofInstant(Instant.ofEpochMilli(random), now.zone)
         }
 
-        fun getRandomString(origin: Int, bound: Int) : String {
+        fun getRandomString(origin: Int, bound: Int): String {
             /**
              * Generates a random String with random alphanumeric characters
              * @return a random String
              */
-            return RandomStringUtils.randomAlphanumeric(Randomization.rand.nextInt(origin, bound))
+            return RandomStringUtils.randomAlphanumeric(rand.nextInt(origin, bound))
         }
 
         fun getRandomName(): String {

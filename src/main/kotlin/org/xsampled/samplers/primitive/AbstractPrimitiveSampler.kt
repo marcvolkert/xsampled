@@ -2,13 +2,21 @@ package org.xsampled.samplers.primitive
 
 // this class is the base class for all primitive samplers
 // it uses the default implementations of the interfaces
-abstract class AbstractPrimitiveSampler (
-    private val binarySampler: IBinarySampler = Defaults.getBinarySampler(),
-    private val booleanSampler: IBooleanSampler = Defaults.getBooleanSampler(),
-    private val dateTimeSampler: IDateTimeSampler = Defaults.getDateTimeSampler(),
-    private val floatingPointSampler: IFloatingPointSampler = Defaults.getFloatingPointSampler(),
-    private val textSampler: ITextSampler = Defaults.getTextSampler()
+abstract class AbstractPrimitiveSampler(
+    private val binarySampler: IBinarySampler = AbstractPrimitiveSampler.binarySampler,
+    private val booleanSampler: IBooleanSampler = AbstractPrimitiveSampler.booleanSampler,
+    private val dateTimeSampler: IDateTimeSampler = AbstractPrimitiveSampler.dateTimeSampler,
+    private val floatingPointSampler: IFloatingPointSampler = AbstractPrimitiveSampler.floatingPointSampler,
+    private val textSampler: ITextSampler = AbstractPrimitiveSampler.textSampler
 ) {
+
+    private companion object {
+        private val binarySampler = object : IBinarySampler {}
+        private val booleanSampler = object : IBooleanSampler {}
+        private val dateTimeSampler = object : IDateTimeSampler {}
+        private val floatingPointSampler = object : IFloatingPointSampler {}
+        private val textSampler = object : ITextSampler {}
+    }
 
     fun generateURI(): String = textSampler.generateURI()
     fun generateBase64Binary(): String = binarySampler.generateBase64Binary()
@@ -25,6 +33,7 @@ abstract class AbstractPrimitiveSampler (
     fun generateGYear(): String = dateTimeSampler.generateGYear()
     fun generateGYearMonth(): String = dateTimeSampler.generateGYearMonth()
     fun generateHexBinary(): String = binarySampler.generateHexBinary()
+
     // throw exception
     fun generateInt(): String = throw NotImplementedError()
     fun generateInteger(): String = throw NotImplementedError()

@@ -7,7 +7,7 @@ import org.apache.ws.commons.schema.XmlSchemaSimpleTypeUnion
 
 // this class is used to generate random values for simple types
 // it delegates to appropriate classes for different types
-class SimpleTypeSampler() {
+class SimpleTypeSampler {
 
     companion object {
 
