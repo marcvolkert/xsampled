@@ -6,7 +6,7 @@ abstract class AbstractPrimitiveSampler(
     private val binarySampler: IBinarySampler = AbstractPrimitiveSampler.binarySampler,
     private val booleanSampler: IBooleanSampler = AbstractPrimitiveSampler.booleanSampler,
     private val dateTimeSampler: IDateTimeSampler = AbstractPrimitiveSampler.dateTimeSampler,
-    private val floatingPointSampler: IFloatingPointSampler = AbstractPrimitiveSampler.floatingPointSampler,
+    private val floatingPointSampler: INumericSampler = AbstractPrimitiveSampler.floatingPointSampler,
     private val textSampler: ITextSampler = AbstractPrimitiveSampler.textSampler
 ) {
 
@@ -14,7 +14,7 @@ abstract class AbstractPrimitiveSampler(
         private val binarySampler = object : IBinarySampler {}
         private val booleanSampler = object : IBooleanSampler {}
         private val dateTimeSampler = object : IDateTimeSampler {}
-        private val floatingPointSampler = object : IFloatingPointSampler {}
+        private val floatingPointSampler = object : INumericSampler {}
         private val textSampler = object : ITextSampler {}
     }
 
@@ -23,10 +23,10 @@ abstract class AbstractPrimitiveSampler(
     fun generateBoolean(): String = booleanSampler.generateBoolean()
     fun generateDate(): String = dateTimeSampler.generateDate()
     fun generateDateTime(): String = dateTimeSampler.generateDateTime()
-    fun generateDecimal(): String = floatingPointSampler.generateDecimal()
-    fun generateDouble(): String = floatingPointSampler.generateDouble()
+    fun generateDecimal(): String = floatingPointSampler.generateDecimal().toString()
+    fun generateDouble(): String = floatingPointSampler.generateDouble().toString()
     fun generateDuration(): String = dateTimeSampler.generateDuration()
-    fun generateFloat(): String = floatingPointSampler.generateFloat()
+    fun generateFloat(): String = floatingPointSampler.generateFloat().toString()
     fun generateGDay(): String = dateTimeSampler.generateGDay()
     fun generateGMonth(): String = dateTimeSampler.generateGMonth()
     fun generateGMonthDay(): String = dateTimeSampler.generateGMonthDay()
