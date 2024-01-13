@@ -10,17 +10,14 @@ repositories {
 }
 
 dependencies {
-    testImplementation("org.jetbrains.kotlin:kotlin-test")
-    // https://mvnrepository.com/artifact/org.apache.ws.xmlschema/xmlschema-core
     implementation("org.apache.ws.xmlschema:xmlschema-core:2.3.1")
-    // https://mvnrepository.com/artifact/org.apache.ws.xmlschema/xmlschema
     implementation("org.apache.ws.xmlschema:xmlschema:2.3.1")
-    // https://mvnrepository.com/artifact/net.jqwik/jqwik
-    testImplementation("net.jqwik:jqwik:1.8.2")
-    // https://mvnrepository.com/artifact/org.jetbrains/annotations
-    compileOnly("org.jetbrains:annotations:24.1.0")
-    // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
-    implementation("org.apache.commons:commons-lang3:3.14.0")
+    implementation("org.apache.commons:commons-lang3:3.12.0")
+    testImplementation("org.jetbrains.kotlin:kotlin-test")
+    testImplementation("org.junit.platform:junit-platform-suite-api:1.9.3")
+    testImplementation("org.junit.platform:junit-platform-suite-engine:1.9.3")
+    //testImplementation("net.jqwik:jqwik:1.7.4")
+    compileOnly("org.jetbrains:annotations")
 }
 
 tasks.test {

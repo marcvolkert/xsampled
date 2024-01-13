@@ -13,7 +13,7 @@ import javax.xml.transform.stream.StreamSource
 fun main() {
 
     // iterate over the elements
-    XMLGenerator.generate(FileInputStream("src/main/resources/POSLogV6.0.0.xsd"))
+    XMLGenerator.generate(FileInputStream("src/test/resources/POSLogV6.0.0.xsd"))
 
 }
 
