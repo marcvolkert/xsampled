@@ -4,12 +4,12 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.platform.commons.annotation.Testable
 import org.xsampled.helpers.Randomization
-import org.xsampled.test.blueprints.PrimitiveSamplerTest
+import org.xsampled.test.blueprints.SamplerPrimitiveLexicalTest
 import javax.xml.namespace.QName
 
 @Testable
-@DisplayName("Primitive samplers delivered with the library are valid according to PrimitiveSamplerTest")
-internal class BuiltinPrimitiveSamplerTests {
+@DisplayName("Default sampler passes SamplerPrimitiveLexicalTest")
+internal class DefaultSamplerPrimitiveLexicalTests {
 
     // generate list with for loop
     private val bootStrapQNames = mutableListOf<QName>().apply {
@@ -31,7 +31,7 @@ internal class BuiltinPrimitiveSamplerTests {
 
     @Nested
     @DisplayName("Default implementation of AbstractPrimitiveSampler generates valid values")
-    inner class DefaultAbstractPrimitiveSamplerTest : PrimitiveSamplerTest() {
+    inner class DefaultSamplerPrimitiveLexicalTest : SamplerPrimitiveLexicalTest() {
         override val sampler: AbstractPrimitiveSampler =
             object : AbstractPrimitiveSampler(availableQNames = bootStrapQNames) {}
     }

@@ -8,8 +8,8 @@ import java.util.*
 import kotlin.test.assertTrue
 
 @Testable
-@DisplayName("Default implementations of sampler interfaces generate valid values")
-internal class SamplerInterfacesTest {
+@DisplayName("Critical interfaces deliver valid values for their respective value spaces")
+internal class InterfacesValueSpaceTest {
 
     @Test
     @DisplayName("IBase64BinarySampler generates valid Base64")

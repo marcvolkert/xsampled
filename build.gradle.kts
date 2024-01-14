@@ -12,6 +12,7 @@ repositories {
 dependencies {
     implementation("org.apache.ws.xmlschema:xmlschema-core:2.3.1")
     implementation("org.apache.ws.xmlschema:xmlschema:2.3.1")
+    implementation("org.dom4j:dom4j:2.1.4")
     implementation("org.apache.commons:commons-lang3:3.12.0")
     testImplementation("org.jetbrains.kotlin:kotlin-test")
     testImplementation("org.junit.platform:junit-platform-suite-api:1.9.3")

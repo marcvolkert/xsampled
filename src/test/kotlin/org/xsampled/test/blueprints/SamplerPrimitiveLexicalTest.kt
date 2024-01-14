@@ -10,8 +10,8 @@ import org.xsampled.samplers.builtin.AbstractPrimitiveSampler
 import java.net.URI
 
 @Testable
-@DisplayName("Generated XML values match the lexical spaces defined in the XML Schema definition")
-abstract class PrimitiveSamplerTest {
+@DisplayName("Generated primitive values match their respective lexical spaces")
+abstract class SamplerPrimitiveLexicalTest {
 
     abstract val sampler: AbstractPrimitiveSampler
 
