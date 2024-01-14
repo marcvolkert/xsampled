@@ -1,8 +1,8 @@
 package org.xsampled.samplers.builtin
 
-import javax.xml.namespace.QName
 import java.time.format.DateTimeFormatter
 import java.util.*
+import javax.xml.namespace.QName
 
 // this class is the base class for all primitive samplers
 // it uses the default implementations of the interfaces

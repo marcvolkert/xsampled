@@ -14,23 +14,26 @@ internal class BuiltinPrimitiveSamplerTests {
     // generate list with for loop
     private val bootStrapQNames = mutableListOf<QName>().apply {
         for (i in 1..100) {
-            add(Randomization.getRandomQName(
-                lowerBoundNames = 3,
-                upperBoundNames = 10,
-                lowerBoundPasswords = 5,
-                upperBoundPasswords = 20,
-                lowerBoundSubdomains = 1,
-                upperBoundSubdomains = 3,
-                lowerBoundSubdomainNames = 3,
-                upperBoundSubdomainNames = 12
-            ))
+            add(
+                Randomization.getRandomQName(
+                    lowerBoundNames = 3,
+                    upperBoundNames = 10,
+                    lowerBoundPasswords = 5,
+                    upperBoundPasswords = 20,
+                    lowerBoundSubdomains = 1,
+                    upperBoundSubdomains = 3,
+                    lowerBoundSubdomainNames = 3,
+                    upperBoundSubdomainNames = 12
+                )
+            )
         }
     }
 
     @Nested
     @DisplayName("Default implementation of AbstractPrimitiveSampler generates valid values")
     inner class DefaultAbstractPrimitiveSamplerTest : PrimitiveSamplerTest() {
-        override val sampler: AbstractPrimitiveSampler = object : AbstractPrimitiveSampler(availableQNames = bootStrapQNames) {}
+        override val sampler: AbstractPrimitiveSampler =
+            object : AbstractPrimitiveSampler(availableQNames = bootStrapQNames) {}
     }
 
 }

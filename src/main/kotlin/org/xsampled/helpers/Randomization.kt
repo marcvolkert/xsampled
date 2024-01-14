@@ -124,7 +124,8 @@ open class Randomization {
             // reference: https://en.wikipedia.org/wiki/Uniform_Resource_Identifier
             // a URI is composed of a scheme, an optional authority, a path, an optional query, and an optional fragment
             // --- scheme ---
-            val scheme = overWriteSchemeWith ?: listOf("http", "https", "ftp", "file", "mailto", "data", "irc", "urn").random()
+            val scheme =
+                overWriteSchemeWith ?: listOf("http", "https", "ftp", "file", "mailto", "data", "irc", "urn").random()
 
             // --- authority ---
             val authority: String
