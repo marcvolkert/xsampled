@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.RepeatedTest
-import org.xsampled.samplers.primitive.AbstractPrimitiveSampler
+import org.xsampled.samplers.builtin.AbstractPrimitiveSampler
 import java.net.URI
 
 internal abstract class PrimitiveSamplerTest {
@@ -15,7 +15,7 @@ internal abstract class PrimitiveSamplerTest {
     @RepeatedTest(100)
     @DisplayName("anyURI")
     fun testGenerateURI() {
-        val uri = sampler.generateURI()
+        val uri = sampler.generateAnyURI()
         println("actual: $uri")
         assertDoesNotThrow { URI(uri) }
         assertTrue(URI(uri).isAbsolute)
