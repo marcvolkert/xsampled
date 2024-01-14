@@ -1,15 +1,16 @@
-package org.xsampled.samplers.primitive
+package org.xsampled.samplers.builtin
 
 import org.xsampled.helpers.Randomization
+import java.net.URI
 
-interface ITextSampler {
-    fun generateURI(): String {
+interface IAnyURISampler {
+    fun generateAnyURI(): URI {
         /**
-         * Generates a Randomization.random absolute URI as String
+         * Generates a random absolute URI as URI
          * Reference: https://en.wikipedia.org/wiki/Uniform_Resource_Identifier
          * A URI is composed of a scheme, an optional authority, a path, an optional query,
          * and an optional fragment
-         * @return a Randomization.random URI
+         * @return a random URI
          */
         // reference: https://en.wikipedia.org/wiki/Uniform_Resource_Identifier
         // a URI is composed of a scheme, an optional authority, a path, an optional query, and an optional fragment
@@ -37,32 +38,6 @@ interface ITextSampler {
         val fragment =
             if (Randomization.rand.nextBoolean()) "#" + Randomization.getRandomString(3, 10).lowercase() else ""
         // build URI
-        return "$scheme:$authority$path$query$fragment"
-    }
-
-    fun generateString(): String {
-        /**
-         * Generates a Randomization.random String
-         * @return a Randomization.random String
-         */
-        return Randomization.getRandomString(10, 100)
-    }
-
-    // TODO: implement
-    fun generateNOTATION(): String {
-        /**
-         * This method is not implemented yet
-         * @throws NotImplementedError
-         */
-        throw NotImplementedError()
-    }
-
-    // TODO: implement
-    fun generateQName(): String {
-        /**
-         * This method is not implemented yet
-         * @throws NotImplementedError
-         */
-        throw NotImplementedError()
+        return URI("$scheme:$authority$path$query$fragment")
     }
 }

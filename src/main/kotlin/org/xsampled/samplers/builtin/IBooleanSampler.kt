@@ -1,14 +1,14 @@
-package org.xsampled.samplers.primitive
+package org.xsampled.samplers.builtin
 
 import org.xsampled.helpers.Randomization
 
 interface IBooleanSampler {
-    fun generateBoolean(): String {
+    fun generateBoolean(): Boolean {
         /**
-         * Generates a random Boolean as String
+         * Generates a random Boolean
          * @return a random Boolean
          */
         val bool = Randomization.rand.nextBoolean()
-        return bool.toString()
+        return bool
     }
 }

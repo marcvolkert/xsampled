@@ -1,4 +1,4 @@
-package org.xsampled.samplers.primitive
+package org.xsampled.samplers.builtin
 
 import org.junit.jupiter.api.Nested
 
