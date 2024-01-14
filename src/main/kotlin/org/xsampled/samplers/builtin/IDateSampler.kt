@@ -8,6 +8,7 @@ interface IDateSampler {
         const val MINUS_YEARS_FROM_NOW = 30L
         const val PLUS_YEARS_FROM_NOW = 30L
     }
+
     fun generateDate(): ZonedDateTime {
         /**
          * Generates a random date as ZonedDateTime

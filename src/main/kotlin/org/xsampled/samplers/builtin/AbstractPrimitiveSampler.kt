@@ -21,8 +21,8 @@ abstract class AbstractPrimitiveSampler(
     private val gYearSampler: IGYearSampler = defaultGYearSampler,
     private val gYearMonthSampler: IGYearMonthSampler = defaultGYearMonthSampler,
     private val hexbinarySampler: IHexBinarySampler = defaultHexBinarySampler,
-    private val NOTATIONSampler: INOTATIONSampler = defaultNOTATIONSampler,
-    private val QNamesampler: IQNameSampler = defaultQNameSampler,
+    private val dtdNOTATIONSampler: INOTATIONSampler = defaultNOTATIONSampler,
+    private val dtdQNameSampler: IQNameSampler = defaultQNameSampler,
     private val stringSampler: IStringSampler = defaultStringSampler,
     private val timeSampler: ITimeSampler = defaultTimeSampler
 ) {
@@ -67,7 +67,7 @@ abstract class AbstractPrimitiveSampler(
     fun generateHexBinary(): String = HexFormat.of().formatHex(hexbinarySampler.generateHexBinary())
     fun generateString(): String = stringSampler.generateString()
     fun generateTime(): String = timeSampler.generateTime().format(DateTimeFormatter.ISO_LOCAL_TIME)
-    fun generateNOTATION(): String = NOTATIONSampler.generateNOTATION()
-    fun generateQName(): String = QNamesampler.generateQName()
+    fun generateNOTATION(): String = dtdNOTATIONSampler.generateNOTATION()
+    fun generateQName(): String = dtdQNameSampler.generateQName()
 
 }

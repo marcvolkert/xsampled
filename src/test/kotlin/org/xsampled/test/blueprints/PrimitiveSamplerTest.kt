@@ -5,11 +5,13 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.RepeatedTest
+import org.junit.platform.commons.annotation.Testable
 import org.xsampled.samplers.builtin.AbstractPrimitiveSampler
 import java.net.URI
-import java.util.*
 
-internal abstract class PrimitiveSamplerTest {
+@Testable
+@DisplayName("Generated XML values match the lexical spaces defined in the XML Schema definition")
+abstract class PrimitiveSamplerTest {
 
     abstract val sampler: AbstractPrimitiveSampler
 
@@ -86,8 +88,6 @@ internal abstract class PrimitiveSamplerTest {
         assertTrue(float.matches(Regex("(\\+|-)?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)([Ee](\\+|-)?[0-9]+)?|(\\+|-)?INF|NaN")))
     }
 
-    @Disabled
-    // TODO: Write meaningful test
     @RepeatedTest(100)
     @DisplayName("gDay")
     fun testGenerateGDay() {
@@ -96,8 +96,6 @@ internal abstract class PrimitiveSamplerTest {
         assertTrue(gDay.matches(Regex("---(0[1-9]|[12][0-9]|3[01])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?")))
     }
 
-    @Disabled
-    // TODO: Write meaningful test
     @RepeatedTest(100)
     @DisplayName("gMonth")
     fun testGenerateGMonth() {
@@ -106,18 +104,14 @@ internal abstract class PrimitiveSamplerTest {
         assertTrue(gMonth.matches(Regex("--(0[1-9]|1[0-2])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?")))
     }
 
-    @Disabled
-    // TODO: Write meaningful test
     @RepeatedTest(100)
     @DisplayName("gMonthDay")
     fun testGenerateGMonthDay() {
         val gMonthDay = sampler.generateGMonthDay()
         println("actual: $gMonthDay")
-        assertTrue(gMonthDay.matches(Regex("-?([1-9][0-9]{3,}|0[0-9]{3})(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?")))
+        assertTrue(gMonthDay.matches(Regex("--(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?")))
     }
 
-    @Disabled
-    // TODO: Write meaningful test
     @RepeatedTest(100)
     @DisplayName("gYear")
     fun testGenerateGYear() {
@@ -126,8 +120,6 @@ internal abstract class PrimitiveSamplerTest {
         assertTrue(gYear.matches(Regex("-?([1-9][0-9]{3,}|0[0-9]{3})(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?")))
     }
 
-    @Disabled
-    // TODO: Write meaningful test
     @RepeatedTest(100)
     @DisplayName("gYearMonth")
     fun testGenerateGYearMonth() {

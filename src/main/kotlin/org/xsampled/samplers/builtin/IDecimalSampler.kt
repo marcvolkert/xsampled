@@ -18,4 +18,6 @@ interface IDecimalSampler {
         return BigDecimal(Randomization.rand.nextDouble(MIN_DECIMAL, MAX_DECIMAL))
     }
 
+    // TODO: implement derived built-in type samplers
+
 }

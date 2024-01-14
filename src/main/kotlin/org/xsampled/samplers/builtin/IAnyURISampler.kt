@@ -32,10 +32,12 @@ interface IAnyURISampler {
         val authority: String
         if (Randomization.rand.nextBoolean()) {
             val username = Randomization.getRandomName(LOWER_BOUND_NAMES, UPPER_BOUND_NAMES)
-            val password = if (Randomization.rand.nextBoolean()) ":${Randomization.getRandomPassword(
-                LOWER_BOUND_PASSWORDS,
-                UPPER_BOUND_PASSWORDS
-            )}" else ""
+            val password = if (Randomization.rand.nextBoolean()) ":${
+                Randomization.getRandomPassword(
+                    LOWER_BOUND_PASSWORDS,
+                    UPPER_BOUND_PASSWORDS
+                )
+            }" else ""
             val userInfo = if (Randomization.rand.nextBoolean()) "$username$password@" else ""
             val host = Randomization.getRandomHostname(
                 LOWER_BOUND_SUBDOMAINS,
@@ -47,12 +49,20 @@ interface IAnyURISampler {
             authority = "//$userInfo$host$port"
         } else authority = ""
         // --- path ---
-        val path = "/" + (0..Randomization.rand.nextInt(5)).joinToString("/") { Randomization.getRandomName(
-            LOWER_BOUND_NAMES, UPPER_BOUND_NAMES) }
+        val path = "/" + (0..Randomization.rand.nextInt(5)).joinToString("/") {
+            Randomization.getRandomName(
+                LOWER_BOUND_NAMES, UPPER_BOUND_NAMES
+            )
+        }
         // --- query ---
         val query = if (Randomization.rand.nextBoolean()) {
             "?" + (0..Randomization.rand.nextInt(5)).joinToString("&") {
-                "${Randomization.getRandomName(LOWER_BOUND_NAMES, UPPER_BOUND_NAMES)}=${Randomization.getRandomName(LOWER_BOUND_NAMES, UPPER_BOUND_NAMES)}"
+                "${Randomization.getRandomName(LOWER_BOUND_NAMES, UPPER_BOUND_NAMES)}=${
+                    Randomization.getRandomName(
+                        LOWER_BOUND_NAMES,
+                        UPPER_BOUND_NAMES
+                    )
+                }"
             }
         } else ""
         // --- fragment ---

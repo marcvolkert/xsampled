@@ -1,14 +1,21 @@
 package org.xsampled.samplers.builtin
 
-interface IGMonthDaySampler {
+import org.xsampled.helpers.Randomization
+import java.time.format.DateTimeFormatter
 
-    // TODO: implement this interface
+interface IGMonthDaySampler {
+    companion object {
+        const val MINUS_YEARS_FROM_NOW = 30L
+        const val PLUS_YEARS_FROM_NOW = 30L
+    }
+
     fun generateGMonthDay(): String {
         /**
-         * This method is not implemented yet
-         * @throws NotImplementedError
+         * generates a month and day in the format --mm-dd
+         * @return a month and day in the format --mm-dd
          */
-        throw NotImplementedError()
+        val formatter = DateTimeFormatter.ofPattern("--MM-dd")
+        return Randomization.getRandomZdt(MINUS_YEARS_FROM_NOW, PLUS_YEARS_FROM_NOW).format(formatter)
     }
 
 }

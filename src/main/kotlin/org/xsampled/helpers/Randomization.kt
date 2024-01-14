@@ -50,7 +50,12 @@ open class Randomization {
             }.joinToString("")
         }
 
-        fun getRandomHostname(lowerBoundSubdomains: Int, upperBoundSubdomains: Int, lowerBoundSubdomainNames: Int, upperBoundSubdomainNames: Int): String {
+        fun getRandomHostname(
+            lowerBoundSubdomains: Int,
+            upperBoundSubdomains: Int,
+            lowerBoundSubdomainNames: Int,
+            upperBoundSubdomainNames: Int
+        ): String {
             /**
              * Generates a random hostname with random subdomains and top-level domains.
              * The length of the domain part is in the range of [lowerBoundSubdomains, upperBoundSubdomains].

@@ -15,8 +15,12 @@ interface IDurationSampler {
          * @return a random Duration
          */
         // difference should be positive, therefore sort the list
-        val randomZonedDateTimes = listOf(Randomization.getRandomZdt(MINUS_YEARS_FROM_NOW, PLUS_YEARS_FROM_NOW),
-            Randomization.getRandomZdt(MINUS_YEARS_FROM_NOW, PLUS_YEARS_FROM_NOW)).sorted()
+        val randomZonedDateTimes = listOf(
+            Randomization.getRandomZdt(MINUS_YEARS_FROM_NOW, PLUS_YEARS_FROM_NOW),
+            Randomization.getRandomZdt(MINUS_YEARS_FROM_NOW, PLUS_YEARS_FROM_NOW)
+        ).sorted()
         return Duration.between(randomZonedDateTimes[0], randomZonedDateTimes[1])
     }
+
+    // TODO: implement derived built-in type samplers
 }

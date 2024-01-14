@@ -16,4 +16,5 @@ interface IStringSampler {
         return Randomization.getRandomString(MIN_LENGTH, MAX_LENGTH)
     }
 
+    // TODO: implement derived built-in type samplers
 }
