@@ -2,7 +2,7 @@ package org.xsampled.samplers.builtin
 
 interface IQNameSampler {
 
-    // TODO: implement
+    // TODO: implement this interface
     fun generateQName(): String {
         /**
          * This method is not implemented yet

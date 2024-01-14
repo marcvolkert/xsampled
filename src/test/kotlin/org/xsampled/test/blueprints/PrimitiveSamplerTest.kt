@@ -1,4 +1,4 @@
-package org.xsampled.blueprints
+package org.xsampled.test.blueprints
 
 import org.junit.jupiter.api.Assertions.assertDoesNotThrow
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -7,6 +7,7 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.RepeatedTest
 import org.xsampled.samplers.builtin.AbstractPrimitiveSampler
 import java.net.URI
+import java.util.*
 
 internal abstract class PrimitiveSamplerTest {
 
