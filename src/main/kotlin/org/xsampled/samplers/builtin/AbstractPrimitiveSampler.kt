@@ -1,5 +1,6 @@
 package org.xsampled.samplers.builtin
 
+import javax.xml.namespace.QName
 import java.time.format.DateTimeFormatter
 import java.util.*
 
@@ -24,7 +25,8 @@ abstract class AbstractPrimitiveSampler(
     private val dtdNOTATIONSampler: INOTATIONSampler = defaultNOTATIONSampler,
     private val dtdQNameSampler: IQNameSampler = defaultQNameSampler,
     private val stringSampler: IStringSampler = defaultStringSampler,
-    private val timeSampler: ITimeSampler = defaultTimeSampler
+    private val timeSampler: ITimeSampler = defaultTimeSampler,
+    private val availableQNames: Iterable<QName>
 ) {
 
     // the default samplers for this class rely on the default implementations of their corresponding interfaces
@@ -50,6 +52,10 @@ abstract class AbstractPrimitiveSampler(
         private val defaultTimeSampler = object : ITimeSampler {}
     }
 
+    // getters
+    fun getAvailableQNames(): Iterable<QName> = availableQNames
+
+    // methods for generating xml built-in types
     fun generateAnyURI(): String = anyURISampler.generateAnyURI().toString()
     fun generateBase64Binary(): String = base64BinarySampler.generateBase64Binary()
     fun generateBoolean(): String = booleanSampler.generateBoolean().toString()
@@ -68,6 +74,6 @@ abstract class AbstractPrimitiveSampler(
     fun generateString(): String = stringSampler.generateString()
     fun generateTime(): String = timeSampler.generateTime().format(DateTimeFormatter.ISO_LOCAL_TIME)
     fun generateNOTATION(): String = dtdNOTATIONSampler.generateNOTATION()
-    fun generateQName(): String = dtdQNameSampler.generateQName()
+    fun generateQName(): String = dtdQNameSampler.generateQName(availableQNames).toString()
 
 }

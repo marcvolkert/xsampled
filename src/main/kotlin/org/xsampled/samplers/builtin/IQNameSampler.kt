@@ -1,14 +1,17 @@
 package org.xsampled.samplers.builtin
 
+import javax.xml.namespace.QName
+
 interface IQNameSampler {
 
-    // TODO: implement this interface
-    fun generateQName(): String {
+    fun generateQName(valuesSpace: Iterable<QName>): QName {
         /**
-         * This method is not implemented yet
-         * @throws NotImplementedError
+         * Chooses a random QName from the given valuesSpace
+         * Reference: https://www.w3.org/TR/xmlschema-2/#QName
+         * @param valuesSpace the valuesSpace to choose the QName from
+         * @return a random QName
          */
-        throw NotImplementedError()
+        return valuesSpace.toList().random()
     }
 
 }

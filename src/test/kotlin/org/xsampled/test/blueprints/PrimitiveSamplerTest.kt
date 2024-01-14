@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.RepeatedTest
+import org.junit.jupiter.api.assertAll
 import org.junit.platform.commons.annotation.Testable
 import org.xsampled.samplers.builtin.AbstractPrimitiveSampler
 import java.net.URI
@@ -137,22 +138,18 @@ abstract class PrimitiveSamplerTest {
     }
 
     @Disabled
-    // TODO: Write meaningful test
     @RepeatedTest(100)
     @DisplayName("NOTATION")
     fun testGenerateNOTATION() {
-        val NOTATION = sampler.generateNOTATION()
-        println("actual: $NOTATION")
+        // NOTATION doesn't provide a lexical space
         assertTrue(false)
     }
 
     @Disabled
-    // TODO: Write meaningful test
     @RepeatedTest(100)
     @DisplayName("QName")
     fun testGenerateQName() {
-        val qName = sampler.generateQName()
-        println("actual: $qName")
+        // QName doesn't provide a lexical space
         assertTrue(false)
     }
 

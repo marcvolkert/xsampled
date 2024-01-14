@@ -4,6 +4,7 @@ import org.apache.commons.lang3.RandomStringUtils
 import java.time.Instant
 import java.time.ZonedDateTime
 import java.util.*
+import javax.xml.namespace.QName
 
 open class Randomization {
 
@@ -88,6 +89,138 @@ open class Randomization {
             return (0..rand.nextInt(lowerBound, upperBound))
                 .map { all.random() }
                 .joinToString("")
+        }
+
+        fun getRandomUri(
+            overWriteSchemeWith: String? = null,
+            disableUserName: Boolean = false,
+            disablePassword: Boolean = false,
+            disableQuery: Boolean = false,
+            disableFragment: Boolean = false,
+            lowerBoundNames: Int,
+            upperBoundNames: Int,
+            lowerBoundPasswords: Int,
+            upperBoundPasswords: Int,
+            lowerBoundSubdomains: Int,
+            upperBoundSubdomains: Int,
+            lowerBoundSubdomainNames: Int,
+            upperBoundSubdomainNames: Int
+        ): String {
+            /**
+             * Generates a random URI
+             * @param overWriteSchemeWith if not null, the scheme will be overwritten with this value
+             * @param disableUserName if true, the username will not be generated
+             * @param disablePassword if true, the password will not be generated
+             * @param lowerBoundNames the lower bound of the length of each name
+             * @param upperBoundNames the upper bound of the length of each name
+             * @param lowerBoundPasswords the lower bound of the length of each password
+             * @param upperBoundPasswords the upper bound of the length of each password
+             * @param lowerBoundSubdomains the lower bound of the number of subdomains
+             * @param upperBoundSubdomains the upper bound of the number of subdomains
+             * @param lowerBoundSubdomainNames the lower bound of the length of each subdomain
+             * @param upperBoundSubdomainNames the upper bound of the length of each subdomain
+             * @return a random URI
+             */
+            // reference: https://en.wikipedia.org/wiki/Uniform_Resource_Identifier
+            // a URI is composed of a scheme, an optional authority, a path, an optional query, and an optional fragment
+            // --- scheme ---
+            val scheme = overWriteSchemeWith ?: listOf("http", "https", "ftp", "file", "mailto", "data", "irc", "urn").random()
+
+            // --- authority ---
+            val authority: String
+            if (rand.nextBoolean() && !disableUserName) {
+                val username = getRandomName(
+                    lowerBoundNames,
+                    upperBoundNames
+                )
+                val password = if (rand.nextBoolean() && !disablePassword) ":${
+                    getRandomPassword(
+                        lowerBoundPasswords,
+                        upperBoundPasswords
+                    )
+                }" else ""
+                val userInfo = if (rand.nextBoolean()) "$username$password@" else ""
+                val host = getRandomHostname(
+                    lowerBoundSubdomains,
+                    upperBoundSubdomains,
+                    lowerBoundSubdomainNames,
+                    upperBoundSubdomainNames
+                )
+                val port = if (rand.nextBoolean()) ":${rand.nextInt(65535)}" else ""
+                authority = "//$userInfo$host$port"
+            } else authority = ""
+            // --- path ---
+            val path = "/" + (0..rand.nextInt(5)).joinToString("/") {
+                getRandomName(
+                    lowerBoundNames, upperBoundNames
+                )
+            }
+
+            // --- query ---
+            val query = if (rand.nextBoolean() && !disableQuery) {
+                "?" + (0..rand.nextInt(5)).joinToString("&") {
+                    "${
+                        getRandomName(
+                            lowerBoundNames,
+                            upperBoundNames
+                        )
+                    }=${
+                        getRandomName(
+                            lowerBoundNames,
+                            upperBoundNames
+                        )
+                    }"
+                }
+            } else ""
+
+            // --- fragment ---
+            val fragment =
+                if (rand.nextBoolean() && !disableFragment) "#" + getRandomString(3, 10).lowercase() else ""
+
+            // build URI
+            return "$scheme:$authority$path$query$fragment"
+        }
+
+        fun getRandomQName(
+            lowerBoundNames: Int,
+            upperBoundNames: Int,
+            lowerBoundPasswords: Int,
+            upperBoundPasswords: Int,
+            lowerBoundSubdomains: Int,
+            upperBoundSubdomains: Int,
+            lowerBoundSubdomainNames: Int,
+            upperBoundSubdomainNames: Int
+        ): QName {
+            /**
+             * Generates a random QName
+             * @param lowerBoundNames the lower bound of the length of each name
+             * @param upperBoundNames the upper bound of the length of each name
+             * @param lowerBoundPasswords the lower bound of the length of each password
+             * @param upperBoundPasswords the upper bound of the length of each password
+             * @param lowerBoundSubdomains the lower bound of the number of subdomains
+             * @param upperBoundSubdomains the upper bound of the number of subdomains
+             * @param lowerBoundSubdomainNames the lower bound of the length of each subdomain
+             * @param upperBoundSubdomainNames the upper bound of the length of each subdomain
+             * @return a random QName
+             */
+            val scheme = listOf("http", "https").random()
+            val url = getRandomUri(
+                overWriteSchemeWith = scheme,
+                disableUserName = true,
+                disablePassword = true,
+                disableQuery = true,
+                disableFragment = true,
+                lowerBoundNames = lowerBoundNames,
+                upperBoundNames = upperBoundNames,
+                lowerBoundPasswords = lowerBoundPasswords,
+                upperBoundPasswords = upperBoundPasswords,
+                lowerBoundSubdomains = lowerBoundSubdomains,
+                upperBoundSubdomains = upperBoundSubdomains,
+                lowerBoundSubdomainNames = lowerBoundSubdomainNames,
+                upperBoundSubdomainNames = upperBoundSubdomainNames
+            )
+            val element = getRandomName(lowerBoundNames, upperBoundNames)
+            return QName(url, element)
         }
     }
 }
