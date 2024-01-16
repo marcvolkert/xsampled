@@ -52,9 +52,6 @@ abstract class AbstractPrimitiveSampler(
         private val defaultTimeSampler = object : ITimeSampler {}
     }
 
-    // getters
-    fun getAvailableQNames(): Iterable<QName> = availableQNames
-
     // methods for generating xml built-in types
     fun generateAnyURI(): String = anyURISampler.generateAnyURI().toString()
     fun generateBase64Binary(): String = base64BinarySampler.generateBase64Binary()
