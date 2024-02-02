@@ -1,21 +1,26 @@
-package org.xsampled.samplers.builtin
+package org.xsampled
 
+import org.xsampled.samplers.builtin.*
+import org.xsampled.samplers.builtin.numeric_like.DoubleSampler
+import org.xsampled.samplers.builtin.numeric_like.FloatSampler
+import org.xsampled.samplers.builtin.numeric_like.DurationSampler
 import java.time.format.DateTimeFormatter
 import java.util.*
 import javax.xml.namespace.QName
+import kotlin.contracts.ExperimentalContracts
 
 // this class is the base class for all primitive samplers
 // it uses the default implementations of the interfaces
-abstract class AbstractPrimitiveSampler(
+internal abstract class AbstractPrimitiveSampler(
     private val anyURISampler: IAnyURISampler = defaultAnyUriSampler,
     private val base64BinarySampler: IBase64BinarySampler = defaultBase64BinarySampler,
     private val booleanSampler: IBooleanSampler = defaultBooleanSampler,
     private val dateSampler: IDateSampler = defaultDateSampler,
     private val dateTimeSampler: IDateTimeSampler = defaultDateTimeSampler,
     private val decimalSampler: IDecimalSampler = defaultDecimalSampler,
-    private val doubleSampler: IDoubleSampler = defaultDoubleSampler,
-    private val durationSampler: IDurationSampler = defaultDurationSampler,
-    private val floatSampler: IFloatSampler = defaultFloatSampler,
+    private val doubleSampler: DoubleSampler = defaultDoubleSampler,
+    private val durationSampler: DurationSampler = defaultDurationSampler,
+    private val floatSampler: FloatSampler = defaultFloatSampler,
     private val gDaySampler: IGDaySampler = defaultGDaySampler,
     private val gMonthSampler: IGMonthSampler = defaultGMonthSampler,
     private val gMonthDaySampler: IGMonthDaySampler = defaultGMonthDaySampler,
@@ -37,9 +42,9 @@ abstract class AbstractPrimitiveSampler(
         private val defaultDateSampler = object : IDateSampler {}
         private val defaultDateTimeSampler = object : IDateTimeSampler {}
         private val defaultDecimalSampler = object : IDecimalSampler {}
-        private val defaultDoubleSampler = object : IDoubleSampler {}
-        private val defaultDurationSampler = object : IDurationSampler {}
-        private val defaultFloatSampler = object : IFloatSampler {}
+        private val defaultDoubleSampler = object : DoubleSampler() {}
+        private val defaultDurationSampler = object : DurationSampler() {}
+        private val defaultFloatSampler = object : FloatSampler() {}
         private val defaultGDaySampler = object : IGDaySampler {}
         private val defaultGMonthSampler = object : IGMonthSampler {}
         private val defaultGMonthDaySampler = object : IGMonthDaySampler {}
@@ -59,9 +64,10 @@ abstract class AbstractPrimitiveSampler(
     fun generateDate(): String = dateSampler.generateDate().format(DateTimeFormatter.ISO_LOCAL_DATE)
     fun generateDateTime(): String = dateTimeSampler.generateDateTime().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)
     fun generateDecimal(): String = decimalSampler.generateDecimal().toString()
-    fun generateDouble(): String = doubleSampler.generateDouble().toString()
-    fun generateDuration(): String = durationSampler.generateDuration().toString()
-    fun generateFloat(): String = floatSampler.generateFloat().toString()
+    @OptIn(ExperimentalContracts::class)
+    fun generateDouble(): String = doubleSampler.generate()
+    fun generateDuration(): String = durationSampler.generate()
+    fun generateFloat(): String = floatSampler.generate()
     fun generateGDay(): String = gDaySampler.generateGDay()
     fun generateGMonth(): String = gMonthSampler.generateGMonth()
     fun generateGMonthDay(): String = gMonthDaySampler.generateGMonthDay()

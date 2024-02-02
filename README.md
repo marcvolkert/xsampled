@@ -11,6 +11,7 @@ Currently, the project consists of implementations of the following:
 * An abstract class to map the generated values to corresponding lexical representations
 
 The next steps will be:
+* Simplifying primitive type generators by making them functional interfaces and grouping them by extending interfaces that are based on applicable facets
 * Extending the aforementioned interfaces for primitive types to include generators for their built-in derived types (e.g. xs:integer -> xs:nonNegativeInteger)
 * Implementing the generators for non-built-in simple types
 * Implementing the generators for complex types

@@ -17,13 +17,18 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test")
     testImplementation("org.junit.platform:junit-platform-suite-api:1.9.3")
     testImplementation("org.junit.platform:junit-platform-suite-engine:1.9.3")
-    //testImplementation("net.jqwik:jqwik:1.7.4")
+    testImplementation("net.jqwik:jqwik:1.7.4")
+    testImplementation("org.assertj:assertj-core:3.24.2")
     compileOnly("org.jetbrains:annotations")
 }
 
 tasks.test {
-    useJUnitPlatform()
+    useJUnitPlatform {
+        includeEngines("junit-jupiter", "jqwik")
+    }
+    include("**/*Test.class")
 }
+
 kotlin {
     jvmToolchain(17)
 }

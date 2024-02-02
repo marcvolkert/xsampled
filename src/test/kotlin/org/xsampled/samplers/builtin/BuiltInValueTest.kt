@@ -9,7 +9,7 @@ import kotlin.test.assertTrue
 
 @Testable
 @DisplayName("Critical interfaces deliver valid values for their respective value spaces")
-internal class InterfacesValueTest {
+internal class BuiltInValueTest {
 
     @Test
     @DisplayName("IBase64BinarySampler generates valid Base64")

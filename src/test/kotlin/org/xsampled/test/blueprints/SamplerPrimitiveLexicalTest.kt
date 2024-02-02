@@ -6,14 +6,14 @@ import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.RepeatedTest
 import org.junit.platform.commons.annotation.Testable
-import org.xsampled.samplers.builtin.AbstractPrimitiveSampler
+import org.xsampled.AbstractPrimitiveSampler
 import java.net.URI
 
 @Testable
 @DisplayName("Generated primitive values match their respective lexical spaces")
 abstract class SamplerPrimitiveLexicalTest {
 
-    abstract val sampler: AbstractPrimitiveSampler
+    internal abstract val sampler: AbstractPrimitiveSampler
 
     @RepeatedTest(100)
     @DisplayName("anyURI")

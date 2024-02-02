@@ -6,7 +6,7 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.RepeatedTest
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.platform.commons.annotation.Testable
-import org.xsampled.samplers.builtin.AbstractPrimitiveSampler
+import org.xsampled.AbstractPrimitiveSampler
 import java.io.File
 import java.io.StringWriter
 import javax.xml.XMLConstants
@@ -71,7 +71,7 @@ abstract class SamplerPrimitiveValidationTest {
 
     }
 
-    abstract val sampler: AbstractPrimitiveSampler
+    internal abstract val sampler: AbstractPrimitiveSampler
 
     @RepeatedTest(100)
     @DisplayName("Generate a random XML from the schema and validate it")
